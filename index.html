@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeniorCare - Assistance & Service Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- PROTOTYPE ROLE SWITCHER -->
+  <div class="prototype-bar">
+    <span>SeniorCare UI/UX Prototype (Interactive View Switcher)[cite: 1]:</span>
+    <div class="role-pills">
+      <button class="active" onclick="switchView('screen-login')">1. Login</button>
+      <button onclick="switchView('screen-senior')">2. Senior/Caregiver Hub</button>
+      <button onclick="switchView('screen-request')">3. Submit Request</button>
+      <button onclick="switchView('screen-staff')">4. Barangay Staff Console</button>
+      <button onclick="switchView('screen-bhw')">5. BHW Field Interface</button>
+      <button onclick="switchView('screen-osca')">6. OSCA Analytics</button>
+    </div>
+  </div>
+
+  <header>
+    <div class="brand">
+      SeniorCare <span>Portal</span>
+      <small>LGU Dasmariñas</small>
+    </div>
+    <div id="user-status-text" class="status-indicator">Viewing: Login Screen</div>
+  </header>
+
+  <div class="container">
+
+    <!-- 1. LOGIN / AUTHENTICATION SCREEN -->
+    <section id="screen-login" class="screen active">
+      <div class="login-wrapper">
+        <div class="card">
+          <h2>Secure Portal Login</h2>
+          <p>Sign in to access senior services, task dispatches, or administration[cite: 1].</p>
+          <div class="form-group">
+            <label for="login-id">Senior ID or Email</label>
+            <input type="text" id="login-id" placeholder="e.g. SNR-2026-0042 or user@dasma.gov" />
+          </div>
+          <div class="form-group">
+            <label for="login-pw">Password</label>
+            <input type="password" id="login-pw" placeholder="••••••••" />
+          </div>
+          <div class="form-group">
+            <label for="login-role">Select Portal Role (RBAC)</label>
+            <select id="login-role">
+              <option value="screen-senior">Senior Citizen / Caregiver</option>
+              <option value="screen-staff">Barangay Staff (Operations)</option>
+              <option value="screen-bhw">Barangay Health Worker (BHW)</option>
+              <option value="screen-osca">OSCA Staff / Administrator</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-block" onclick="navigateFromSelect()">Log In to System</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SENIOR CITIZEN & CAREGIVER DASHBOARD -->
+    <section id="screen-senior" class="screen">
+      <div class="grid-2">
+        <!-- Digital Senior ID Card Component -->
+        <div>
+          <h2>Digital Senior Citizen ID</h2>
+          <div class="digital-id-card">
+            <div class="id-header">
+              <div>
+                <h3>REPUBLIC OF THE PHILIPPINES</h3>
+                <small>Office for Senior Citizens Affairs (OSCA)</small>
+              </div>
+              <div class="qr-placeholder">QR CODE</div>
+            </div>
+            <div class="id-body">
+              <div class="id-avatar">👤</div>
+              <div class="id-details">
+                <p><strong>RAMON SANTOS REYES</strong></p>
+                <p>ID: <strong>OSCA-DSM-2026-0811</strong></p>
+                <p>Age: 68 | Sex: Male</p>
+                <p>Barangay: Sampaloc 1, Dasmariñas</p>
+                <p>Emergency: Maria Reyes (0917-000-1234)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Notifications -->
+        <div>
+          <h2>Recent Updates</h2>
+          <div class="card">
+            <div class="notif-item">
+              <strong>BHW Assigned</strong>
+              <p>BHW Juanita Perez has been assigned for Medicine Delivery[cite: 1].</p>
+            </div>
+            <div class="notif-item">
+              <strong>Check-up Scheduled</strong>
+              <p>Monthly hypertension monitoring visit confirmed for Oct 3, 2026[cite: 1].</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Request Assistance Services</h2>
+      <p>Tap a category below to initiate an immediate community request[cite: 1]:</p>
+      <div class="grid-3">
+        <div class="action-card" onclick="switchView('screen-request')">
+          <div class="action-icon">💊</div>
+          <span>Medicine Delivery</span>
+        </div>
+        <div class="action-card" onclick="switchView('screen-request')">
+          <div class="action-icon">🚐</div>
+          <span>Transport Assistance</span>
+        </div>
+        <div class="action-card" onclick="switchView('screen-request')">
+          <div class="action-icon">🩺</div>
+          <span>Home Health Visit</span>
+        </div>
+        <div class="action-card" onclick="switchView('screen-request')">
+          <div class="action-icon">📄</div>
+          <span>Document Assistance</span>
+        </div>
+        <div class="action-card" onclick="switchView('screen-request')">
+          <div class="action-icon">📅</div>
+          <span>Appointment Booking</span>
+        </div>
+        <div class="action-card card-sos" onclick="triggerSosAlert()">
+          <div class="action-icon">🚨</div>
+          <span class="text-danger">Emergency SOS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ASSISTANCE REQUEST SUBMISSION FORM -->
+    <section id="screen-request" class="screen">
+      <div class="form-wrapper">
+        <div class="card">
+          <h2>Submit Assistance Request</h2>
+          <p>Fill out the simple form below. A caregiver can also file this on your behalf[cite: 1].</p>
+          
+          <div class="form-group">
+            <label for="req-service">Service Category</label>
+            <select id="req-service">
+              <option>Medicine Delivery (Prescription Maintenance)</option>
+              <option>Transport Assistance (LGU Vehicle)</option>
+              <option>Home Health Care / Vital Sign Visit</option>
+              <option>Document Assistance (OSCA Booklet, IDs)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="req-details">Service Details / Items Needed</label>
+            <textarea id="req-details" rows="3" placeholder="e.g., Amlodipine 5mg 30-day pack, Losartan prescription attached."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="req-contact">Contact Phone Number</label>
+            <input type="tel" id="req-contact" value="0917-000-1234" />
+          </div>
+
+          <div class="grid-2">
+            <button class="btn btn-primary" onclick="submitAssistanceRequest()">Submit Request</button>
+            <button class="btn btn-secondary" onclick="switchView('screen-senior')">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. BARANGAY STAFF DISPATCH CONSOLE -->
+    <section id="screen-staff" class="screen">
+      <h2>Barangay Operations: Request Review & Dispatch</h2>
+      <p>Review incoming requests, confirm eligibility, and assign tasks to BHWs[cite: 1].</p>
+      
+      <div class="card">
+        <h3>Pending Assistance Requests</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Req ID</th>
+              <th>Senior Citizen</th>
+              <th>Assistance Type</th>
+              <th>Status</th>
+              <th>Assign Field BHW</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#RQ-104</td>
+              <td><strong>Ramon Reyes</strong><br><small>Sampaloc 1</small></td>
+              <td>Medicine Delivery</td>
+              <td><span class="badge badge-pending">Pending Review</span></td>
+              <td>
+                <select class="table-select">
+                  <option>Select Worker...</option>
+                  <option selected>BHW Juanita Perez</option>
+                  <option>BHW Carlos Diaz</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-success btn-sm" onclick="approveTask('RQ-104')">Approve & Dispatch</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#RQ-105</td>
+              <td><strong>Elena Bautista</strong><br><small>Sampaloc 1</small></td>
+              <td>Transport to Clinic</td>
+              <td><span class="badge badge-progress">In Review</span></td>
+              <td>
+                <select class="table-select">
+                  <option>Select Worker...</option>
+                  <option>BHW Carlos Diaz</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-success btn-sm">Approve</button>
+                <button class="btn btn-danger btn-sm">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. BHW FIELD INTERFACE (MOBILE-OPTIMIZED) -->
+    <section id="screen-bhw" class="screen">
+      <div class="mobile-wrapper">
+        <h2>Barangay Health Worker (BHW) Field View</h2>
+        <p>Assigned home visits and deliveries for today[cite: 1]:</p>
+
+        <div class="card">
+          <div class="task-header">
+            <span class="badge badge-assigned">Assigned Task</span>
+            <small>Task ID #TSK-881</small>
+          </div>
+          <h3 class="task-title">Ramon Reyes (Age 68)</h3>
+          <p><strong>Service:</strong> Medicine Delivery (Hypertension Maintenance)</p>
+          <p><strong>Address:</strong> Block 4, Lot 12, Sampaloc 1, Dasmariñas</p>
+          <p><strong>Notes:</strong> Beneficiary requires receipt signature.</p>
+
+          <label for="bhw-status">Update Service Status:</label>
+          <select id="bhw-status" class="field-select">
+            <option>En Route</option>
+            <option>In Progress (At Beneficiary Home)</option>
+            <option selected>Service Completed</option>
+          </select>
+
+          <div class="form-group">
+            <label for="bhw-notes">Field Remarks</label>
+            <textarea id="bhw-notes" rows="2" placeholder="e.g. Delivered 1 box Amlodipine, patient vitals normal."></textarea>
+          </div>
+
+          <button class="btn btn-success btn-block" onclick="saveFieldReport()">Save Field Report</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. OSCA / ADMIN REPORTS & ANALYTICS -->
+    <section id="screen-osca" class="screen">
+      <h2>OSCA Administrative Dashboard & Analytics</h2>
+      <p>System-wide service utilization and LGU health metrics[cite: 1].</p>
+
+      <div class="grid-3">
+        <div class="card card-center">
+          <h3>Total Seniors</h3>
+          <p class="metric-text metric-primary">2,845</p>
+          <small>Verified in Barangay Database</small>
+        </div>
+        <div class="card card-center">
+          <h3>Requests This Month</h3>
+          <p class="metric-text metric-secondary">412</p>
+          <small>96% Fulfillment Rate</small>
+        </div>
+        <div class="card card-center">
+          <h3>Active BHWs</h3>
+          <p class="metric-text metric-accent">34</p>
+          <small>Field Personnel on Duty</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Service Category Distribution (Current Period)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Service Category</th>
+              <th>Volume</th>
+              <th>Avg Completion Time</th>
+              <th>Satisfaction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Medicine Delivery</td>
+              <td>230 requests</td>
+              <td>1.8 hours</td>
+              <td>⭐ 4.9 / 5.0</td>
+            </tr>
+            <tr>
+              <td>Transport Assistance</td>
+              <td>88 requests</td>
+              <td>3.1 hours</td>
+              <td>⭐ 4.8 / 5.0</td>
+            </tr>
+            <tr>
+              <td>Health Visits & Vitals</td>
+              <td>94 requests</td>
+              <td>2.4 hours</td>
+              <td>⭐ 5.0 / 5.0</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-actions">
+          <button class="btn btn-secondary" onclick="exportReport()">Export System Report (CSV)</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
