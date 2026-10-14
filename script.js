@@ -2,6 +2,7 @@
  * SeniorCare Prototype UI Controller
  */
 
+// Handle switching between UI screens via the new navigation tabs
 function switchView(screenId) {
   // Hide all screens
   document.querySelectorAll('.screen').forEach(el => {
@@ -14,29 +15,31 @@ function switchView(screenId) {
     target.classList.add('active');
   }
 
-  // Update navbar pill styling
-  document.querySelectorAll('.role-pills button').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('onclick').includes(screenId));
+  // Highlight the active navigation link
+  document.querySelectorAll('.nav-link').forEach(btn => {
+    if (btn.getAttribute('onclick').includes(screenId)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
   });
 
-  // Update header text based on screen
-  const titles = {
-    'screen-login': 'Login Screen',
-    'screen-senior': 'Senior Citizen / Caregiver Hub',
-    'screen-request': 'Assistance Request Form',
-    'screen-staff': 'Barangay Staff Dispatch Console',
-    'screen-bhw': 'BHW Mobile Field Task',
-    'screen-osca': 'OSCA Analytics Dashboard'
-  };
-
-  const statusEl = document.getElementById('user-status-text');
-  if (statusEl) {
-    statusEl.innerText = 'Viewing: ' + (titles[screenId] || '');
-  }
-
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Accessibility Feature: Toggle Large Text View
+function toggleLargeView() {
+  document.body.classList.toggle('large-view');
+  
+  const btn = document.querySelector('.btn-toggle-view');
+  if (document.body.classList.contains('large-view')) {
+    btn.innerHTML = '🔍 Standard Text';
+  } else {
+    btn.innerHTML = '🔍 Large Text';
+  }
+}
+
+// Form and action mock functions
 function navigateFromSelect() {
   const selectedRoleScreen = document.getElementById('login-role').value;
   switchView(selectedRoleScreen);

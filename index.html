@@ -8,25 +8,26 @@
 </head>
 <body>
 
-  <!-- PROTOTYPE ROLE SWITCHER -->
-  <div class="prototype-bar">
-    <span>SeniorCare UI/UX Prototype (Interactive View Switcher)[cite: 1]:</span>
-    <div class="role-pills">
-      <button class="active" onclick="switchView('screen-login')">1. Login</button>
-      <button onclick="switchView('screen-senior')">2. Senior/Caregiver Hub</button>
-      <button onclick="switchView('screen-request')">3. Submit Request</button>
-      <button onclick="switchView('screen-staff')">4. Barangay Staff Console</button>
-      <button onclick="switchView('screen-bhw')">5. BHW Field Interface</button>
-      <button onclick="switchView('screen-osca')">6. OSCA Analytics</button>
-    </div>
-  </div>
-
   <header>
     <div class="brand">
-      SeniorCare <span>Portal</span>
-      <small>LGU Dasmariñas</small>
+      <img src="logo1.png" alt="SeniorCare Logo" class="logo-img" />
+      <div class="brand-text">
+        SeniorCare <span>Portal</span>
+        <small>LGU Dasmariñas</small>
+      </div>
     </div>
-    <div id="user-status-text" class="status-indicator">Viewing: Login Screen</div>
+    
+    <nav class="navbar">
+      <button class="nav-link active" onclick="switchView('screen-login')">Login</button>
+      <button class="nav-link" onclick="switchView('screen-senior')">Dashboard</button>
+      <button class="nav-link" onclick="switchView('screen-staff')">Staff</button>
+      <button class="nav-link" onclick="switchView('screen-bhw')">BHW Field</button>
+      <button class="nav-link" onclick="switchView('screen-osca')">OSCA Admin</button>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-toggle-view" onclick="toggleLargeView()">🔍 Large Text</button>
+    </div>
   </header>
 
   <div class="container">
@@ -36,7 +37,7 @@
       <div class="login-wrapper">
         <div class="card">
           <h2>Secure Portal Login</h2>
-          <p>Sign in to access senior services, task dispatches, or administration[cite: 1].</p>
+          <p>Sign in to access senior services, task dispatches, or administration.</p>
           <div class="form-group">
             <label for="login-id">Senior ID or Email</label>
             <input type="text" id="login-id" placeholder="e.g. SNR-2026-0042 or user@dasma.gov" />
@@ -46,7 +47,7 @@
             <input type="password" id="login-pw" placeholder="••••••••" />
           </div>
           <div class="form-group">
-            <label for="login-role">Select Portal Role (RBAC)</label>
+            <label for="login-role">Select Portal Role</label>
             <select id="login-role">
               <option value="screen-senior">Senior Citizen / Caregiver</option>
               <option value="screen-staff">Barangay Staff (Operations)</option>
@@ -92,18 +93,18 @@
           <div class="card">
             <div class="notif-item">
               <strong>BHW Assigned</strong>
-              <p>BHW Juanita Perez has been assigned for Medicine Delivery[cite: 1].</p>
+              <p>BHW Juanita Perez has been assigned for Medicine Delivery.</p>
             </div>
             <div class="notif-item">
               <strong>Check-up Scheduled</strong>
-              <p>Monthly hypertension monitoring visit confirmed for Oct 3, 2026[cite: 1].</p>
+              <p>Monthly hypertension monitoring visit confirmed for Oct 3, 2026.</p>
             </div>
           </div>
         </div>
       </div>
 
       <h2 class="section-title">Request Assistance Services</h2>
-      <p>Tap a category below to initiate an immediate community request[cite: 1]:</p>
+      <p>Tap a category below to initiate an immediate community request:</p>
       <div class="grid-3">
         <div class="action-card" onclick="switchView('screen-request')">
           <div class="action-icon">💊</div>
@@ -137,7 +138,7 @@
       <div class="form-wrapper">
         <div class="card">
           <h2>Submit Assistance Request</h2>
-          <p>Fill out the simple form below. A caregiver can also file this on your behalf[cite: 1].</p>
+          <p>Fill out the simple form below. A caregiver can also file this on your behalf.</p>
           
           <div class="form-group">
             <label for="req-service">Service Category</label>
@@ -170,7 +171,7 @@
     <!-- 4. BARANGAY STAFF DISPATCH CONSOLE -->
     <section id="screen-staff" class="screen">
       <h2>Barangay Operations: Request Review & Dispatch</h2>
-      <p>Review incoming requests, confirm eligibility, and assign tasks to BHWs[cite: 1].</p>
+      <p>Review incoming requests, confirm eligibility, and assign tasks to BHWs.</p>
       
       <div class="card">
         <h3>Pending Assistance Requests</h3>
@@ -223,11 +224,11 @@
       </div>
     </section>
 
-    <!-- 5. BHW FIELD INTERFACE (MOBILE-OPTIMIZED) -->
+    <!-- 5. BHW FIELD INTERFACE -->
     <section id="screen-bhw" class="screen">
       <div class="mobile-wrapper">
         <h2>Barangay Health Worker (BHW) Field View</h2>
-        <p>Assigned home visits and deliveries for today[cite: 1]:</p>
+        <p>Assigned home visits and deliveries for today:</p>
 
         <div class="card">
           <div class="task-header">
@@ -256,10 +257,10 @@
       </div>
     </section>
 
-    <!-- 6. OSCA / ADMIN REPORTS & ANALYTICS -->
+    <!-- 6. OSCA / ADMIN REPORTS -->
     <section id="screen-osca" class="screen">
       <h2>OSCA Administrative Dashboard & Analytics</h2>
-      <p>System-wide service utilization and LGU health metrics[cite: 1].</p>
+      <p>System-wide service utilization and LGU health metrics.</p>
 
       <div class="grid-3">
         <div class="card card-center">
